@@ -70,8 +70,8 @@ abstract class Niveau extends Ecran {
    * Nettoyer tous les objets éphémères.
    */
   void nettoyer() {
-    /* Pour chaque couche. */
-    for (CoucheNiveau couche: couches) {
+    /* Pour chaque couche de niveau. */
+    for(CoucheNiveau couche: couches) {
       couche.nettoyer();
     }
   }
@@ -107,7 +107,9 @@ abstract class Niveau extends Ecran {
    */
   void draw() {
     translate(-cadre.x, -cadre.y);
-    for (CoucheNiveau couche: couches) {
+    
+    /* Pour chaque couche de niveau. */
+    for(CoucheNiveau couche: couches) {
       couche.draw();
     }
   }
@@ -128,7 +130,8 @@ abstract class Niveau extends Ecran {
    * Afficher les élements de fond.
    */
   void afficherFond(boolean _b)  {
-    for (CoucheNiveau couche: couches) {
+    /* Pour chaque couche de niveau. */
+    for(CoucheNiveau couche: couches) {
       couche.afficherFond = _b;
     }
   }
@@ -137,6 +140,7 @@ abstract class Niveau extends Ecran {
    * Afficher les limites.
    */
   void afficherLimites(boolean _b) {
+    /* Pour chaque couche de niveau. */
     for (CoucheNiveau couche: couches) { 
       couche.afficherLimites = _b;
     }
@@ -146,7 +150,8 @@ abstract class Niveau extends Ecran {
    * Afficher les objets.
    */
   void afficherObjets(boolean _b) {
-    for (CoucheNiveau couche: couches) {
+    /* Pour chaque couche de niveau. */
+    for(CoucheNiveau couche: couches) {
       couche.afficherObjets = _b;
     }
   }
@@ -155,7 +160,8 @@ abstract class Niveau extends Ecran {
    * Afficher les autocollants.
    */
   void afficherAutocollants(boolean _b) {
-    for (CoucheNiveau couche: couches) {
+    /* Pour chaque couche de niveau. */
+    for(CoucheNiveau couche: couches) {
       couche.afficherAutocollants = _b;
     }
   }
@@ -164,7 +170,8 @@ abstract class Niveau extends Ecran {
    * Afficher les interacteurs.
    */
   void afficherInteracteurs(boolean _b) {
-    for (CoucheNiveau couche: couches) {
+    /* Pour chaque couche de niveau. */
+    for(CoucheNiveau couche: couches) {
       couche.afficherInteracteurs = _b;
     }
   }
@@ -173,7 +180,8 @@ abstract class Niveau extends Ecran {
    * Afficher les joueurs.
    */
   void afficherJoueurs(boolean _b) {
-    for (CoucheNiveau couche: couches) {
+    /* Pour chaque couche de niveau. */
+    for(CoucheNiveau couche: couches) {
       couche.afficherJoueurs = _b;
     }
   }
@@ -182,6 +190,7 @@ abstract class Niveau extends Ecran {
    * Afficher les éléments de premier plan.
    */
   void afficherPremierPlan(boolean _b) {
+    /* Pour chaque couche de niveau. */
     for (CoucheNiveau couche: couches) {
       couche.afficherPremierPlan = _b;
     }
@@ -191,7 +200,8 @@ abstract class Niveau extends Ecran {
    * Afficher les déclencheurs.
    */
   void afficherDeclencheurs(boolean _b) {
-    for (CoucheNiveau couche: couches) {
+    /* Pour chaque couche de niveau. */
+    for(CoucheNiveau couche: couches) {
       couche.afficherDeclencheurs = _b;
     }
   }
