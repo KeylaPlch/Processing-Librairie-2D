@@ -1,7 +1,7 @@
 /**
  * Les acteurs sont des objets constitués de plusieurs états,
- * chaque état étant associé à une sprite particulière,
- * et un comportement particulier.
+ * chaque état étant associé à une sprite particulière, et un
+ * comportement particulier.
  */
 abstract class Acteur extends Positionnable {
   /**
