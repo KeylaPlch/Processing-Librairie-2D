@@ -1,5 +1,5 @@
 /**
- * Librairie de jeu 2D, inspirée du travail de Mike Kamermans.
+ * Librairie 2D pour Processing, inspirée du travail de Mike Kamermans.
  * @author Joao Brilhante, Keyla Plichon.
  * @version Alpha 0.1
  */
