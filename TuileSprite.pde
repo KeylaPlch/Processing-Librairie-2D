@@ -51,7 +51,7 @@ class TuileSprite extends Positionnable {
   }
 
   /**
-   * Vérifier que la sprite est affichable.
+   * Déterminer si l'objet est visible dans le cadre d'affichage actuel.
    */
   boolean affichable(float _x1, float _y1, float _x2, float _y2) {
     return true;
