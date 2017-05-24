@@ -6,10 +6,10 @@
 interface Affichable {
   /**
    * Affichage de l'objet.
-   * @param _x1 Coordonné x1 du cadre d'affichage.
-   * @param _y1 Coordonné y1 du cadre d'affichage.
-   * @param _x2 Coordonné x2 du cadre d'affichage.
-   * @param _y2 Coordonné y2 du cadre d'affichage.
+   * @param _x Coordonné x du cadre d'affichage.
+   * @param _y Coordonné y du cadre d'affichage.
+   * @param _largeur Largeur du cadre d'affichage.
+   * @param _hauteur Hauteur du cadre d'affichage.
    */
-  void draw(float _x1, float _y1, float _x2, float _y2);
+  void draw(float _x, float _y, float _largeur, float _hauteur);
 }
