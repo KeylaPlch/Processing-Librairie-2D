@@ -443,29 +443,12 @@ abstract class Acteur extends Positionnable {
   //--------------------------//
   //        EVENEMENTS.       //
   //--------------------------//
-
-  /**
-   * Événement de bloquage.
-   * @param _limite Limite de collision.
-   * @param _intersection Tableau d'informations de collision.
-   * @param _original Tableaux des anciennes vitesses de l'acteur.
-   */
-  void EvenementBloquer(Limite _limite, float[] _intersection, float[] _original) {}
-
+  
   /**
    * Événement de controles.
    */
   void EvenementControles() {}
-
-  /**
-   * Événement de collision.
-   * @param _autre L'autre acteur en collision.
-   * @param _direction Direction de collision.
-   */
-  void EvenementCollision(Acteur _autre, float[] _direction) {
-    collision = true;
-  }
-
+  
   /**
    * Événement de fin d'état.
    * @param _etat État ayant fini son animation.
@@ -477,6 +460,23 @@ abstract class Acteur extends Positionnable {
    * @param _objet Objet ramassé.
    */
   void EvenementRamasser(Objet _objet) {}
+  
+  /**
+   * Événement de collision.
+   * @param _autre L'autre acteur en collision.
+   * @param _direction Direction de collision.
+   */
+  void EvenementCollision(Acteur _autre, float[] _direction) {
+    collision = true;
+  }
+
+  /**
+   * Événement de bloquage.
+   * @param _limite Limite de collision.
+   * @param _intersection Tableau d'informations de collision.
+   * @param _original Tableaux des anciennes vitesses de l'acteur.
+   */
+  void EvenementBloquer(Limite _limite, float[] _intersection, float[] _original) {}
 
   //--------------------------//
   //        CONTROLES.        //
