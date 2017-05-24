@@ -1,5 +1,6 @@
 /**
- * Cette classe définit un chemin, le long duquel la sprite sera déplacée.
+ * Cette classe définit un chemin, le long duquel la
+ * sprite sera déplacée.
  */
 class SpriteChemin {
   /**
