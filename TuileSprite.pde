@@ -43,8 +43,8 @@ class TuileSprite extends Positionnable {
     float ex = min(x2, _x + 2 * _largeur);
     float ey = min(y2, _y + 2 * _hauteur);
 
-    for (x = sx; x < ex; x += sprite.largeur){
-      for (y = sy; y < ey; y += sprite.hauteur){
+    for(x = sx; x < ex; x += sprite.largeur){
+      for(y = sy; y < ey; y += sprite.hauteur){
         sprite.draw(x,y);
       }
     }
