@@ -2,27 +2,26 @@
  * Autocollants.
  */
 class Autocollant extends Sprite {
-
-  /**
-   * L'autocollant doit-il être supprimé.
-   */
-  boolean supprimer;
-  
-  /**
-   * L'autocollant peut-il expirer ?
-   */
-  boolean expiration;
-
   /**
    * Durée de l'autocollant.
    */
   protected int duree;
   
   /**
+   * L'autocollant peut-il expirer ?
+   */
+  boolean expiration;
+  
+  /**
+   * L'autocollant doit-il être supprimé.
+   */
+  boolean supprimer;
+  
+  /**
    * Propriétaire de l'autocollant.
    */
   Positionnable proprietaire;
-
+  
   /**
    * Constructeur d'un autocollant sans expiration.
    * @param _spritesheet Spritesheet de l'autocollant.
@@ -96,16 +95,16 @@ class Autocollant extends Sprite {
     
     /* Définition de la position. */
     definirPosition(_x, _y);
-
-    /* Définition de l'expiration. */
-    expiration = _expiration;
-
+  
     /* Définition de la durée. */
     duree = _duree;
-
+    
+    /* Définition de l'expiration. */
+    expiration = _expiration;
+    
     /* Initialisation du propriétaire. */
     proprietaire = null;
-
+    
     /* Si l'autocollant peut expirer, on définit son chemin. */
     if(expiration) { definirChemin(); }
   }
@@ -135,7 +134,7 @@ class Autocollant extends Sprite {
   /**
    * Affichage de l'autocollant.
    */
-  void draw(float _x1, float _y1, float _x2, float _y2) {
+  void draw(float _x, float _y, float _largeur, float _hauteur) {
     /* Si l'autocollant n'a pas d'expiration ou que sa durée est positive. */
     if(!expiration || duree-- > 0) {
       super.draw(); 
