@@ -35,13 +35,13 @@ class TuileSprite extends Positionnable {
   /**
    * Affichage de la sprite.
    */
-  void draw(float _x1, float _y1, float _x2, float _y2) {
+  void draw(float _x, float _y, float _largeur, float _hauteur) {
     float x, y;
     float ox = sprite.x, oy = sprite.y;
-    float sx = max(x1, _x1 - (_x1-x1) % sprite.largeur);
-    float sy = max(y1, _y1 - (_y1-y1) % sprite.hauteur);
-    float ex = min(x2, _x1 + 2 * _x2);
-    float ey = min(y2, _y1 + 2 * _y2);
+    float sx = max(x1, _x - (_x - x1) % sprite.largeur);
+    float sy = max(y1, _y - (_y - y1) % sprite.hauteur);
+    float ex = min(x2, _x + 2 * _largeur);
+    float ey = min(y2, _y + 2 * _hauteur);
 
     for (x = sx; x < ex; x += sprite.largeur){
       for (y = sy; y < ey; y += sprite.hauteur){
@@ -53,7 +53,7 @@ class TuileSprite extends Positionnable {
   /**
    * Déterminer si l'objet est visible dans le cadre d'affichage actuel.
    */
-  boolean affichable(float _x1, float _y1, float _x2, float _y2) {
+  boolean affichable(float _x, float _y, float _largeur, float _hauteur) {
     return true;
   } 
   
