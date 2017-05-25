@@ -7,16 +7,16 @@ abstract class Declencheur extends Positionnable {
    * Nom du déclencheur.
    */
   String nom;
-
-  /**
-   * Le déclencheur doit-il être supprimé ?
-   */
-  boolean supprimer;
-
+  
   /**
    * Le déclencheur doit-il être désactivé ?
    */
   boolean desactiver;
+  
+  /**
+   * Le déclencheur doit-il être supprimé ?
+   */
+  boolean supprimer;
 
   /**
    * Constructeur simple.
@@ -76,8 +76,8 @@ abstract class Declencheur extends Positionnable {
   /**
    * Déterminer si l'objet est visible dans le cadre d'affichage actuel.
    */
-  boolean affichable(float _x1, float _y1, float _x2, float _y2) {
-    return _x1 <= x + largeur && x <= _x1 + _x2 && _y1 <= y + hauteur && y <= _y1 + _y2;
+  boolean affichable(float _x, float _y, float _largeur, float _hauteur) {
+    return _x <= x + largeur && x <= _x + _largeur && _y <= y + hauteur && y <= _y + _hauteur;
   }
   
   /**
