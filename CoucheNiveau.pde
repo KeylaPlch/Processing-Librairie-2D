@@ -426,7 +426,7 @@ abstract class CoucheNiveau {
     int position = joueurs.indexOf(_ancienJoueur);
 
     /* Si l'ancien joueur est dans la liste. */
-    if (position > -1) {
+    if(position > -1) {
       joueurs.set(position, _nouveauJoueur);
       _nouveauJoueur.limites.clear();
       attacher(_nouveauJoueur);
@@ -457,9 +457,9 @@ abstract class CoucheNiveau {
    */
   void nettoyerActeurs(ArrayList<? extends Acteur> _acteurs) {
     /* On parcours la liste d'acteurs à l'envers. */
-    for (int i = _acteurs.size()-1; i >= 0; i--) {
+    for(int i = _acteurs.size()-1; i >= 0; i--) {
       /* Si l'acteur n'est pas persistant. */
-      if (!_acteurs.get(i).persistant) {
+      if(!_acteurs.get(i).persistant) {
         _acteurs.remove(i);
       }
     }
@@ -588,14 +588,14 @@ abstract class CoucheNiveau {
     scale(echelleX, echelleY);
 
     /* Affichage des éléments. */
-    if (afficherFond) afficherFond(x, y, largeur, hauteur);
-    if (afficherLimites) afficherLimites(x, y, largeur, hauteur);
-    if (afficherObjets) afficherObjets(x, y, largeur, hauteur);
-    if (afficherInteracteurs) afficherInteracteurs(x, y, largeur, hauteur);
-    if (afficherJoueurs) afficherJoueurs(x, y, largeur, hauteur);
-    if (afficherAutocollants) afficherAutocollants(x, y, largeur, hauteur);
-    if (afficherPremierPlan) afficherPremierPlan(x, y, largeur, hauteur);
-    if (afficherDeclencheurs) afficherDeclencheurs(x, y, largeur, hauteur);
+    if(afficherFond) afficherFond(x, y, largeur, hauteur);
+    if(afficherLimites) afficherLimites(x, y, largeur, hauteur);
+    if(afficherObjets) afficherObjets(x, y, largeur, hauteur);
+    if(afficherInteracteurs) afficherInteracteurs(x, y, largeur, hauteur);
+    if(afficherJoueurs) afficherJoueurs(x, y, largeur, hauteur);
+    if(afficherAutocollants) afficherAutocollants(x, y, largeur, hauteur);
+    if(afficherPremierPlan) afficherPremierPlan(x, y, largeur, hauteur);
+    if(afficherDeclencheurs) afficherDeclencheurs(x, y, largeur, hauteur);
 
     popMatrix();
   }
@@ -605,12 +605,12 @@ abstract class CoucheNiveau {
    */
   void afficherFond(float _x, float _y, float _largeur, float _hauteur) { 
     /* Si la couleur de fond a été définie. */
-    if (couleurFond != -1) {
+    if(couleurFond != -1) {
       background(couleurFond);
     }
 
     /* Affichage de chaque élément. */
-    for (Affichable element : fond) {
+    for(Affichable element : fond) {
       element.draw(_x, _y, _largeur, _hauteur);
     }
   }
@@ -620,14 +620,14 @@ abstract class CoucheNiveau {
    */
   void afficherLimites(float _x, float _y, float _largeur, float _hauteur) { 
     /* Affichage des limites. */
-    for (Limite limite : limites) {
+    for(Limite limite : limites) {
       limite.draw(_x, _y, _largeur, _hauteur);
     }
 
     /* Affichage des limites des interacteurs limités. */
-    for (InteracteurLimite interacteur: interacteurs_limite) {
+    for(InteracteurLimite interacteur: interacteurs_limite) {
       /* Si les limites de l'interacteurs sont actives. */
-      if (interacteur.limitation) {
+      if(interacteur.limitation) {
         interacteur.afficherLimites(_x, _y, _largeur, _hauteur);
       }
     }
@@ -638,28 +638,28 @@ abstract class CoucheNiveau {
    */
   void afficherObjets(float _x, float _y, float _largeur, float _hauteur) { 
     /* Affichage des objets de joueur. */
-    for (int i = objets.size()-1; i >= 0; i--) {
+    for(int i = objets.size()-1; i >= 0; i--) {
       Objet objet = objets.get(i);
       
       /* Si l'objet a été supprimé. */
-      if (objet.supprimer) {
+      if(objet.supprimer) {
         objets.remove(i);
         continue;
       }
 
       /* Si l'objet est interactif et en mouvement. */
-      if (objet.interactif && objet.mouvement && !objet.interactifJoueur) {
+      if(objet.interactif && objet.mouvement && !objet.interactifJoueur) {
         /* Collision de l'objet avec les limites. */
-        for (Limite limite : limites) {
+        for(Limite limite : limites) {
           DetectionCollision.collision(limite, objet);
         }
 
         /* Pour chaque interacteur limité. */
-        for (InteracteurLimite interacteur : interacteurs_limite) {
+        for(InteracteurLimite interacteur : interacteurs_limite) {
           /* Si les limites de l'interacteur sont actives. */
-          if (interacteur.limitation) {
+          if(interacteur.limitation) {
             /* Pour chaque limite de l'interacteur. */
-            for (Limite limite : interacteur.limites) {
+            for(Limite limite : interacteur.limites) {
               DetectionCollision.collision(limite, objet);
             }
           }
@@ -669,13 +669,13 @@ abstract class CoucheNiveau {
       /* Pour chaque joueur. */
       for(Joueur joueur : joueurs) {
         /* Si le joueur n'est pas interactif. */
-        if (!joueur.interactif) continue;
+        if(!joueur.interactif) continue;
 
         /* Collision du joueur avec l'objet. */
         float[] collision = joueur.collision(objet);
         
         /* Si il y a collision. */
-        if (collision != null) {
+        if(collision != null) {
           objet.EvenementCollision(joueur);
           break;
         }
@@ -690,7 +690,7 @@ abstract class CoucheNiveau {
       Objet objet = objets_npc.get(i);
       
       /* Si l'objet a été supprimé. */
-      if (objet.supprimer) {
+      if(objet.supprimer) {
         objets_npc.remove(i);
         continue;
       }
@@ -698,16 +698,16 @@ abstract class CoucheNiveau {
       /* Si l'objet est interactif et en mouvement. */
       if(objet.interactif && objet.mouvement && !objet.interactifJoueur) {
         /* Collision de l'objet avec les limites. */
-        for (Limite limite : limites) {
+        for(Limite limite : limites) {
           DetectionCollision.collision(limite, objet);
         }
 
         /* Pour chaque interacteur limité. */
-        for (InteracteurLimite interacteur: interacteurs_limite) {
+        for(InteracteurLimite interacteur: interacteurs_limite) {
           /* Si les limites de l'interacteur sont actives. */
-          if (interacteur.limitation) {
+          if(interacteur.limitation) {
             /* Pour chaque limite de l'interacteur. */
-            for (Limite limite: interacteur.limites) {
+            for(Limite limite: interacteur.limites) {
               DetectionCollision.collision(limite, objet);
             }
           }
@@ -715,9 +715,9 @@ abstract class CoucheNiveau {
       }
 
       /* Pour chaque interacteur. */
-      for (Interacteur interacteur : interacteurs) {
+      for(Interacteur interacteur : interacteurs) {
         /* Si l'interacteur n'est pas interactif. */
-        if (!interacteur.interactif) continue;
+        if(!interacteur.interactif) continue;
 
         /* Collision de l'interacteur avec l'objet. */
         float[] collision = interacteur.collision(objet);
@@ -748,31 +748,31 @@ abstract class CoucheNiveau {
    */
   void afficherInteracteurs(float _x, float _y, float _largeur, float _hauteur, ArrayList<? extends Interacteur> _interacteurs) {
     /* Pour chaque interacteur de la liste. */
-    for (int i = 0; i < _interacteurs.size(); i++) {
+    for(int i = 0; i < _interacteurs.size(); i++) {
       Interacteur interacteur = _interacteurs.get(i);
       
       /* Si l'interacteur a été supprimé. */
-      if (interacteur.supprimer) {
+      if(interacteur.supprimer) {
         _interacteurs.remove(i);
         continue;
       }
 
       /* Si l'objet est interactif et en mouvement. */
-      if (interacteur.interactif && interacteur.mouvement && !interacteur.interactifJoueur) {
+      if(interacteur.interactif && interacteur.mouvement && !interacteur.interactifJoueur) {
         /* Pour chaque limite. */
-        for (Limite limite : limites) {
+        for(Limite limite : limites) {
           DetectionCollision.collision(limite, interacteur);
         }
 
         /* Pour chaque interacteur limité. */
-        for (InteracteurLimite interacteurLimite: interacteurs_limite) {
+        for(InteracteurLimite interacteurLimite: interacteurs_limite) {
           /* Si l'interacteur limité est l'acteur en cours d'affichage. */
-          if (interacteurLimite == interacteur) continue;
+          if(interacteurLimite == interacteur) continue;
           
           /* Si les limites de l'interacteur limité sont actives. */
-          if (interacteurLimite.limitation) {
+          if(interacteurLimite.limitation) {
             /* Pour chaque limite de l'interacteur limité. */
-            for (Limite limite : interacteurLimite.limites) {
+            for(Limite limite : interacteurLimite.limites) {
               DetectionCollision.collision(limite, interacteur);
             }
           }
@@ -789,21 +789,21 @@ abstract class CoucheNiveau {
    */
   void afficherJoueurs(float _x, float _y, float _largeur, float _hauteur) {
     /* Pour chaque joueur. */
-    for (int i = joueurs.size()-1; i >= 0; i--) {
+    for(int i = joueurs.size()-1; i >= 0; i--) {
       Joueur joueur = joueurs.get(i);
 
       /* Si le joueur a été supprimé. */
-      if (joueur.supprimer) {
+      if(joueur.supprimer) {
         joueurs.remove(i);
         continue;
       }
 
       /* Si le joueur est interactif. */
-      if (joueur.interactif) {
+      if(joueur.interactif) {
         /* Si le joueur est en mouvement. */
-        if (joueur.mouvement) {
+        if(joueur.mouvement) {
           /* Pour chaque limite. */
-          for (Limite limite : limites) {
+          for(Limite limite : limites) {
             DetectionCollision.collision(limite, joueur);
           }
 
@@ -831,7 +831,7 @@ abstract class CoucheNiveau {
           Declencheur declencheur = declencheurs.get(j);
 
           /* Si le déclencheur a été supprimé. */
-          if (declencheur.supprimer) { 
+          if(declencheur.supprimer) { 
             declencheurs.remove(declencheur);
             continue;
           }
@@ -840,7 +840,7 @@ abstract class CoucheNiveau {
           float[] collision = declencheur.collision(joueur);
           
           /* S'il n'y a pas de collision. */
-          if (collision == null && declencheur.desactiver) {
+          if(collision == null && declencheur.desactiver) {
             declencheur.activer(); 
           }
 
@@ -864,18 +864,18 @@ abstract class CoucheNiveau {
    */
   void gererCollisionActeur(float _x, float _y, float _largeur, float _hauteur, Acteur _acteur, ArrayList<? extends Interacteur> _interacteurs) {
     /* Pour chaque interacteur dans la liste. */
-    for (int i = 0; i < _interacteurs.size(); i++) {
+    for(int i = 0; i < _interacteurs.size(); i++) {
       /* Récupération de l'interacteur. */
       Acteur interacteur = _interacteurs.get(i);
       
       /* Si l'interacteur n'est pas interactif. */
-      if (!interacteur.interactif) continue;
+      if(!interacteur.interactif) continue;
 
       /* Récupération du tableau d'informations de collision. */
       float[] collision = _acteur.collision(interacteur);
       
       /* S'il y a collision. */
-      if (collision != null) {
+      if(collision != null) {
         /* Événement de collision de l'acteur. */
         _acteur.EvenementCollision(interacteur, collision);
 
@@ -887,7 +887,7 @@ abstract class CoucheNiveau {
         arrayCopy(collision, 0, inverse, 0, taille);
         
         /* Pour toutes les informations. */
-        for (int j = 0; j < taille; j++) {
+        for(int j = 0; j < taille; j++) {
           inverse[j] = -inverse[j];
         }
 
@@ -895,7 +895,7 @@ abstract class CoucheNiveau {
         interacteur.EvenementCollision(_acteur, inverse); 
       }
       /* S'il s'agit d'un Traqueur. */
-      else if (interacteur instanceof Traqueur) {
+      else if(interacteur instanceof Traqueur) {
         ((Traqueur)interacteur).traquer(_acteur, _x, _y, _largeur, _hauteur);
       }
     }
@@ -906,7 +906,7 @@ abstract class CoucheNiveau {
    */
   void afficherAutocollants(float _x, float _y, float _largeur, float _hauteur) {
     /* Pour chaque autocollant. */
-    for (int i = autocollants.size()-1; i >= 0; i--) {
+    for(int i = autocollants.size()-1; i >= 0; i--) {
       Autocollant autocollant = autocollants.get(i);
 
       /* Si l'autocollant a été supprimé. */
@@ -925,7 +925,7 @@ abstract class CoucheNiveau {
    */
   void afficherPremierPlan(float _x, float _y, float _largeur, float _hauteur) {
     /* Pour chaque élément de premier plan. */
-    for (Affichable element: premier_plan) {
+    for(Affichable element: premier_plan) {
       /* Affichage de l'élement de premier plan. */
       element.draw(_x, _y, _largeur, _hauteur);
     }
@@ -936,7 +936,7 @@ abstract class CoucheNiveau {
    */
   void afficherDeclencheurs(float _x, float _y, float _largeur, float _hauteur) {
     /* Pour chaque déclencheur. */
-    for (Affichable declencheur: declencheurs) {
+    for(Affichable declencheur: declencheurs) {
       /* Affichage du déclencheur. */
       declencheur.draw(_x, _y, _largeur, _hauteur);
     }
@@ -947,30 +947,44 @@ abstract class CoucheNiveau {
   //--------------------------//
 
   void keyPressed(char _touche, int _codeTouche) {
-    for (Joueur joueur : joueurs) { joueur.keyPressed(_touche, _codeTouche); }
+    for(Joueur joueur : joueurs) {
+      joueur.keyPressed(_touche, _codeTouche);
+    }
   }
 
   void keyReleased(char _touche, int _codeTouche) {
-    for (Joueur joueur : joueurs) { joueur.keyReleased(_touche, _codeTouche); }
+    for(Joueur joueur : joueurs) {
+      joueur.keyReleased(_touche, _codeTouche);
+    }
   }
 
   void mouseMoved(int _mouseX, int _mouseY) {
-    for (Joueur joueur : joueurs) { joueur.mouseMoved(_mouseX, _mouseY); }
+    for(Joueur joueur : joueurs) {
+      joueur.mouseMoved(_mouseX, _mouseY);
+    }
   }
 
   void mousePressed(int _mouseX, int _mouseY, int _bouton) {
-    for (Joueur joueur : joueurs) { joueur.mousePressed(_mouseX, _mouseY, _bouton); }
+    for(Joueur joueur : joueurs) {
+      joueur.mousePressed(_mouseX, _mouseY, _bouton);
+    }
   }
 
   void mouseDragged(int _mouseX, int _mouseY, int _bouton) {
-    for (Joueur joueur : joueurs) { joueur.mouseDragged(_mouseX, _mouseY, _bouton); }
+    for(Joueur joueur : joueurs) {
+      joueur.mouseDragged(_mouseX, _mouseY, _bouton);
+    }
   }
 
   void mouseReleased(int _mouseX, int _mouseY, int _bouton) {
-    for (Joueur joueur : joueurs) { joueur.mouseReleased(_mouseX, _mouseY, _bouton); }
+    for(Joueur joueur : joueurs) {
+      joueur.mouseReleased(_mouseX, _mouseY, _bouton);
+    }
   }
 
   void mouseClicked(int _mouseX, int _mouseY, int _bouton) {
-    for (Joueur joueur : joueurs) { joueur.mouseClicked(_mouseX, _mouseY, _bouton); }
+    for(Joueur joueur : joueurs) {
+      joueur.mouseClicked(_mouseX, _mouseY, _bouton);
+    }
   }
 }
