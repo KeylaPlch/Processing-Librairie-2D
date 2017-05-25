@@ -257,8 +257,7 @@ class Limite extends Positionnable {
   /**
    * Déterminer si l'objet est visible dans le cadre d'affichage actuel.
    */
-  boolean affichable(float _x1, float _y1, float _x2, float _y2) {
-    /* Les limites sont invisibles, donc toujours affichables. */
+  boolean affichable(float _x, float _y, float _largeur, float _hauteur) {
     return true;
   }
 
