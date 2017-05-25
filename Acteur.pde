@@ -8,7 +8,7 @@ abstract class Acteur extends Positionnable {
    * Nom de l'acteur.
    */
   String nom;
-
+  
   /**
    * L'état actif de l'acteur.
    */
@@ -18,7 +18,12 @@ abstract class Acteur extends Positionnable {
    * Liste de tous les états de l'acteur.
    */
   HashMap<String, Etat> etats;
-
+  
+  /**
+   * Alignement de l'acteur.
+   */
+  float alignementH, alignementV;
+  
   /**
    * La couche du niveau dans laquelle l'acteur se trouve.
    */
@@ -28,7 +33,12 @@ abstract class Acteur extends Positionnable {
    * L'acteur est-il actuellement en collision ?
    */
   boolean collision;
-
+  
+  /**
+   * L'acteur est-il persistant dans la fenêtre d'affichage ?
+   */
+  boolean persistant;
+  
   /**
    * L'acteur interagit-il avec les autres acteurs ?
    */
@@ -36,7 +46,6 @@ abstract class Acteur extends Positionnable {
   
   /**
    * L'acteur interagit-il seulement avec les joueurs ?
-   * @type {Boolean}
    */
   boolean interactifJoueur;
 
@@ -46,22 +55,12 @@ abstract class Acteur extends Positionnable {
   int desactiverInteraction;
 
   /**
-   * L'acteur est-il persistant dans la fenêtre d'affichage ?
-   */
-  boolean persistant;
-
-  /**
-   * L'acteur doit-il être supprimé ?
+   * L'acteur a-t-il été supprimé ?
    */
   boolean supprimer;
 
   /**
-   * Alignement de l'acteur.
-   */
-  float alignementH, alignementV;
-
-  /**
-   * Déboguage.
+   * Mode de déboguage.
    */
   boolean deboguage;
 
@@ -71,7 +70,6 @@ abstract class Acteur extends Positionnable {
    */
   Acteur(String _nom) {
     nom = _nom;
-    deboguage = false;
     interactif = true;
     persistant = true;
     etats = new HashMap<String, Etat>();
@@ -406,15 +404,15 @@ abstract class Acteur extends Positionnable {
   /**
    * Affichage de l'acteur.
    */
-  void draw(float _x1, float _y1, float _x2, float _y2) {
+  void draw(float _x, float _y, float _largeur, float _hauteur) {
     if(!supprimer) EvenementControles();
-    super.draw(_x1, _y1, _x2, _y2);
+    super.draw(_x, _y, _largeur, _hauteur);
   }
 
   /**
    * Déterminer si l'objet est visible dans le cadre d'affichage actuel.
    */
-  boolean affichable(float _x1, float _y1, float _x2, float _y2) {
+  boolean affichable(float _x, float _y, float _largeur, float _hauteur) {
     return true;
   }
 
@@ -426,7 +424,7 @@ abstract class Acteur extends Positionnable {
       actif.draw(desactiverInteraction > 0);
       
       /* Si le mode de déboguage est activé. */
-      if (deboguage) {
+      if(deboguage) {
         noFill();
         stroke(255,0,0);
         float[] limites = recupererDelimitations();
