@@ -20,16 +20,8 @@ static class GestionnaireSprite {
    * @param _sketch Sketch principal.
    * @param _pixel Taille d'un pixel.
    */
-  static void initialisation(PApplet _sketch) {
+  static void initialisation(PApplet _sketch, int _taillePixel) {
     sketch = _sketch;
-    taillePixel = 1;
-  }
-  
-  /**
-   * Définir la taille d'un pixel.
-   * @param _taillePixel Taille d'un pixel.
-   */
-  void definirTaillePixel(int _taillePixel) {
     taillePixel = _taillePixel;
   }
   
