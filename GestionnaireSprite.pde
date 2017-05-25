@@ -1,12 +1,12 @@
 /**
- * The sprite map handler is responsible for turning sprite maps
- * into frame arrays. Sprite maps are single images with multiple
- * animation frames spaced equally along the x and y axes.
+ * Le gestionnaire de sprite permet de transformer un spritesheet
+ * en tableau d'images. Un spritesheet étant une simple image
+ * contenant plusieurs trames d'animations équidistantes le long
+ * de l'axe x et y.
  */
 static class GestionnaireSprite {
-
   /**
-   * Sketch global.
+   * Sketch principal.
    */
   static PApplet sketch;
 
@@ -16,15 +16,23 @@ static class GestionnaireSprite {
   static int taillePixel;
   
   /**
-   * Initialisation du gestionnaire de sprite.
-   * @param _sketch Sketch global.
+   * Constructeur complet.
+   * @param _sketch Sketch principal.
    * @param _pixel Taille d'un pixel.
    */
-  static void initialisation(PApplet _sketch, int _pixel) {
+  static void initialisation(PApplet _sketch) {
     sketch = _sketch;
-    taillePixel = _pixel;
+    taillePixel = 1;
   }
-
+  
+  /**
+   * Définir la taille d'un pixel.
+   * @param _taillePixel Taille d'un pixel.
+   */
+  void definirTaillePixel(int _taillePixel) {
+    taillePixel = _taillePixel;
+  }
+  
   /**
    * Découper une tuile de sprite.
    * @param _spritesheet Spritesheet à découper.
@@ -47,7 +55,7 @@ static class GestionnaireSprite {
   private static PImage[] decouperTuileSprite(String _spritesheet, int _lignes, int _colonnes, boolean _gaucheDroite) {
     /* Si le sketch global n'existe pas. */
     if (sketch == null) {
-      println("[Librairie]: Le gestionnaire de sprite nécessite une référence au sketch global.");
+      println("[Librairie]: Le gestionnaire de sprite nécessite une référence au sketch principal.");
     }
 
     /* Charger le spritesheet. */
@@ -69,11 +77,11 @@ static class GestionnaireSprite {
     PImage[] sprites = new PImage[compteurSprite];
 
     /* De gauche à droite puis de haut en bas. */
-    if (_gaucheDroite){
+    if(_gaucheDroite){
       /* Pour chaque ligne. */
-      for (int i = 0; i < _lignes; i++) {
+      for(int i = 0; i < _lignes; i++) {
         /* Pour chaque colonne. */
-        for (int j = 0; j < _colonnes; j++) {
+        for(int j = 0; j < _colonnes; j++) {
           sprites[indice++] = spritesheet.get(j * largeurSprite, i * hauteurSprite, largeurSprite, hauteurSprite);
         }
       }
@@ -81,14 +89,13 @@ static class GestionnaireSprite {
     /* De haut en bas puis de gauche à droite. */
     else {
       /* Pour chaque colonne. */
-      for (int j = 0; j < _colonnes; j++) {
+      for(int j = 0; j < _colonnes; j++) {
         /* Pour chaque ligne. */
-        for (int i = 0; i < _lignes; i++) {
+        for(int i = 0; i < _lignes; i++) {
           sprites[indice++] = spritesheet.get(j * largeurSprite, i * hauteurSprite, largeurSprite, hauteurSprite);
         }
       }
     }
-
     return sprites;
   }
   
@@ -110,8 +117,8 @@ static class GestionnaireSprite {
     image.loadPixels();
     nouvelle.loadPixels();
     /* Pour chaque pixel de l'image redimensionnée. */
-    for (int i = 0; i < nouvelle.height; i++) {
-      for (int j = 0; j < nouvelle.width; j++) {
+    for(int i = 0; i < nouvelle.height; i++) {
+      for(int j = 0; j < nouvelle.width; j++) {
         /* Correspondance des pixels. */
         int x = int(map(j, 0, nouvelle.width, 0, image.width));
         int y = int(map(i, 0, nouvelle.width, 0, image.width));
