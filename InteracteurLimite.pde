@@ -106,9 +106,9 @@ abstract class InteracteurLimite extends Interacteur implements AuditeurCollisio
   /**
    * Affichage des limites.
    */
-  void afficherLimites(float _x1, float _y1, float _x2, float _y2) {
+  void afficherLimites(float _x, float _y, float _largeur, float _hauteur) {
     for(Limite limite : limites) {
-      limite.draw(_x1, _y1, _x2, _y2);
+      limite.draw(_x, _y, _largeur, _hauteur);
     }
   }
   
