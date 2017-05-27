@@ -124,6 +124,15 @@ abstract class Acteur extends Positionnable {
   }
   
   /**
+   * Récupérer la sprite d'un état.
+   * @param _etat Nom de l'état.
+   * @return La sprite de l'état.
+   */
+  Sprite recupererSpriteEtat(String _etat) {
+    return recupererEtat(_etat).sprite;
+  }
+  
+  /**
    * Récupérer la sprite actuelle de l'animation.
    */
   PImage recupererSprite() {
